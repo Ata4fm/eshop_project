@@ -1,0 +1,253 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+{% load poll_extras %}
+
+{% block title %}
+    جزییات خرید
+{% endblock %}
+
+{% block content %}
+    {#    <main class="order-delivered default space-top-30">#}
+    {#                <div class="container">#}
+    {#                    <div class="row">#}
+    {#                        <div class="col-xl-9 col-lg-8 col-md-12 order-2">#}
+    {#                            <div class="row">#}
+    {#                                <div class="col-lg-12">#}
+    {#                                    <header class="card-header">#}
+    {#                                        <h3 class="card-title"><span>سفارشات در جریان</span></h3>#}
+    {#                                    </header>#}
+    {#                                    <div class="content-section default">#}
+    {#                                        <div class="row">#}
+    {##}
+    {#                                            <div class="col-md-12 col-sm-12 order_delivered_sec">#}
+    {#                                                <div class="profile-recent-fav-row">#}
+    {#                                                    <div class="col-12">#}
+    {##}
+    {#                                                            <h4 class="profile-recent-fav-name">#}
+    {#                                                                <i class="fa fa-truck" aria-hidden="true"></i> خروج از انبار#}
+    {#                                                            </h4>#}
+    {#                                                        <ul>#}
+    {#                                                            <li>#}
+    {#                                                                ۲ اردیبهشت ۱۴۰۲#}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                کد سفارش <b>2569854</b>#}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                تخفیف <b>25،000 تومان</b>#}
+    {##}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                مجموع سبد <b>585،000 تومان</b>#}
+    {##}
+    {#                                                            </li>#}
+    {#                                                        </ul>#}
+    {#                                                        <h4 class="profile-recent-Club">#}
+    {#                                                            <i class="fa fa-gift" aria-hidden="true"></i> امتیاز مسای‌کلاب <b>15</b>#}
+    {#                                                        </h4>#}
+    {#                                                    </div>#}
+    {##}
+    {#                                                    <div class="col-12">#}
+    {#                                                        <div class="row">#}
+    {##}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_6.jpg">#}
+    {#                                                            </div>#}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_2.jpg">#}
+    {#                                                            </div>#}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_7.jpg">#}
+    {#                                                            </div>#}
+    {##}
+    {#                                                        </div>#}
+    {##}
+    {##}
+    {#                                                    </div>#}
+    {##}
+    {##}
+    {##}
+    {#                                                    <div class="col-12 text-left">#}
+    {#                                                        <a class="btn btn-error-masai">لغو سبد</a>#}
+    {#                                                    </div>#}
+    {#                                                </div>#}
+    {#                                            </div>#}
+    {#                                            <div class="col-md-12 col-sm-12 order_delivered_sec">#}
+    {#                                                <div class="profile-recent-fav-row">#}
+    {#                                                    <div class="col-12">#}
+    {##}
+    {#                                                        <h4 class="profile-recent-fav-name">#}
+    {#                                                            <i class="fa fa-spinner" aria-hidden="true"></i> پردازش انبار#}
+    {#                                                        </h4>#}
+    {#                                                        <ul>#}
+    {#                                                            <li>#}
+    {#                                                                15 اردیبهشت ۱۴۰۲#}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                کد سفارش <b>2569984</b>#}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                تخفیف <b>85،000 تومان</b>#}
+    {##}
+    {#                                                            </li>#}
+    {#                                                            <li>#}
+    {#                                                                مجموع سبد <b>785،000 تومان</b>#}
+    {##}
+    {#                                                            </li>#}
+    {#                                                        </ul>#}
+    {#                                                        <h4 class="profile-recent-Club">#}
+    {#                                                            <i class="fa fa-gift" aria-hidden="true"></i> امتیاز مسای‌کلاب <b>18</b>#}
+    {#                                                        </h4>#}
+    {#                                                    </div>#}
+    {##}
+    {#                                                    <div class="col-12">#}
+    {#                                                        <div class="row">#}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_12.jpg">#}
+    {#                                                            </div>#}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_23.jpg">#}
+    {#                                                            </div>#}
+    {#                                                            <div class="col-4 col-lg-1 col-md-1">#}
+    {#                                                                <img src="assets/img/product_img/p_9.jpg">#}
+    {#                                                            </div>#}
+    {##}
+    {##}
+    {##}
+    {#                                                        </div>#}
+    {##}
+    {##}
+    {#                                                    </div>#}
+    {##}
+    {##}
+    {##}
+    {#                                                    <div class="col-12 text-left">#}
+    {#                                                        <a class="btn btn-error-masai">لغو سبد</a>#}
+    {#                                                    </div>#}
+    {#                                                </div>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        #}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </main>#}
+    <main class="order-delivered default space-top-30">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page-aside col-md-3 pt-5">
+                    <div class="profile-menu ">
+                        {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+                    </div>
+                </div>
+
+
+                <div class="col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <header class="card-header">
+                                <h3 class="card-title"><span>سفارشات در جریان</span></h3>
+                            </header>
+                            {% for detail in order.orderdetail_set.all %}
+                                <div class="content-section default">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 order_delivered_sec">
+                                            <div class="profile-recent-fav-row">
+                                                <div class="col-12">
+                                                    <ul>
+                                                        <li>
+                                                            کد سفارش <b>{{ order.code }}</b>
+                                                        </li>
+                                                        <li>
+                                                            کد کتاب <b>{{ detail.product.id }}</b>
+                                                        </li>
+                                                        <li>
+                                                            تعداد <b>{{ detail.count }}</b>
+                                                        </li>
+                                                        <li>
+                                                            تاریخ خریداری شده
+                                                            <b>{{ order.payment_date|show_jalali_date }}</b>
+                                                        </li>
+                                                        <li>
+                                                            قیمت واحد
+                                                            <b>{{ detail.product.price | three_digits_currency }}</b>
+                                                        </li>
+                                                        <li>
+                                                            قیمت پرداخت
+                                                            نهایی<b>{{ detail.final_price | three_digits_currency }}</b>
+                                                        </li>
+                                                    </ul>
+                                                    <h4 class="profile-recent-Club">
+                                                        <i class="fa fa-gift"
+                                                           aria-hidden="true"></i> {{ detail.product.title }}
+                                                    </h4>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-4 col-lg-1 col-md-1">
+                                                            {% thumbnail detail.product.image "600x800" quality=50 crop='center' as im %}
+                                                                <img src="{{ im.url }}">
+                                                            {% endthumbnail %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
+
+{#<div class="container">#}
+{##}
+{#        <div class="row">#}
+{#            <div class="profile-page-aside col-md-3">#}
+{#                <div class="profile-menu ">#}
+{#                    {% render_partial 'user_panel_module.views.user_panel_menu_component' %}#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="cart-page col-md-9 pt-4">#}
+{#                <table class="table table-responsive table-hover table-striped">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th class="text-center" scope="col">کد پیگیری</th>#}
+{#                        <th class="text-center" scope="col">شناسه کتاب</th>#}
+{#                        <th class="text-center" scope="col">نام کتاب</th>#}
+{#                        <th class="text-center" scope="col">تعداد خریداری شده</th>#}
+{#                        <th class="text-center" scope="col">تاریخ خریداری شده</th>#}
+{#                        <th class="text-center" scope="col">قیمت پرداخت</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    {% for detail in order.orderdetail_set.all %}#}
+{#                        <tr>#}
+{#                            <td class="text-center">{{ order.code }}</td>#}
+{#                            <td class="text-center">{{ order.id }}</td>#}
+{#                            <td class="text-center">{{ detail.product.title }}</td>#}
+{#                            <td class="text-center">{{ detail.count }}</td>#}
+{#                            <td class="text-center">{{ order.payment_date|show_jalali_date }}</td>#}
+{#                            <td class="text-right">{{ detail.final_price | three_digits_currency }}</td>#}
+{##}
+{##}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{##}
+{#                </table>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}

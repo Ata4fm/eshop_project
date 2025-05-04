@@ -1,0 +1,105 @@
+<footer class="main-footer default">
+        <div class="back-to-top ">
+            <a href="#">
+                <span class="icon"><i class="fa fa-chevron-up"></i></span> <span>
+                    بازگشت بالا
+                </span>
+            </a>
+        </div>
+        <div class=" servicesbg">
+            <div class="footer-services container  space-10">
+                <div class="row">
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-4.png" class="width-40" />
+                        <span class="title-1 light-black">ضمانت اصل بودن</span>
+                    </div>
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-1.png" class="width-40" />
+                        <span class="title-1 light-black">پرداخت در محل</span>
+                    </div>
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-2.png" class="width-40" />
+                        <span class="title-1 light-black">ارسال سریع</span>
+                    </div>
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-5.png" class="width-40" />
+                        <span class="title-1 light-black">فرصت 7 روزه استرداد</span>
+                    </div>
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-3.png" class="width-40" />
+                        <span class="title-1 light-black">پشتیبانی تلفنی</span>
+                    </div>
+                    <div class="service-item col-2 contact-box text-center">
+                        <img src="/static/assets/img/ico/png-7.png" class="width-40" />
+                        <span class="title-1 light-black">هدیه نقدی</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid space-30 bg-map">
+
+            <div class="footer-widgets container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="widget-menu widget card">
+                            <div class="card-header">
+                                <h3 class="card-title">درباره ما</h3>
+                            </div>
+                            <p class="about_footer">
+                                {{ site_setting.about_us_text }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                       <div class="row">
+                            <div class="widget-menu widget card-body">
+                        {% for footer_link_box in footer_link_boxes %}
+                            <div class="card-header">
+                                <h3 class="card-title">{{ footer_link_box.title }}</h3>
+                            </div>
+
+                            <ul class="footer-menu">
+                                {% for link in footer_link_box.footerlink_set.all %}
+                                <li>
+
+                                    <a href="{{link.url }}">{{ link.title}}</a></li>
+                                        {% endfor %}
+
+                            </ul>
+                         {% endfor %}
+                        </div>
+
+                       </div>
+
+                    </div>
+
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="widget-menu widget card">
+                            <div class="card-header">
+                                <h3 class="card-title">مجوزات</h3>
+                            </div>
+                            <div class="License_img">
+                                <a href="#" target="_blank"><img src="/static/assets/img/License_2.png" alt=""></a>
+                                <a href="#" target="_blank"><img src="/static/assets/img/License_1.png" alt=""></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <p>
+                   این سایت به آقای فردرزم متعلق میباشد و هرگونه کپی پرداری پیگرد قانونی دارد.
+                </p>
+            </div>
+        </div>
+    </footer>

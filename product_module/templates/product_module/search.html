@@ -1,0 +1,87 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+{% load thumbnail %}
+{% load poll_extras %}
+
+{% block title %}
+    نتایج جستجو
+{% endblock %}
+
+{% block content %}
+        <center>
+        <h3>
+            نتایج جستجو کتاب: {{ searched }}
+        </h3>
+        </center>
+        <br>
+        <br>
+
+
+<center>
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        <div class="listing default">
+        <div class="tab-content default text-center">
+            {% if searched %}
+                <div class="tab-pane active" id="suggestion" role="tabpanel" aria-expanded="true">
+                <div class="row listing-items">
+                {% for product in products %}
+                    {% include 'includes/product_item.html' with product=product %}
+                {% endfor %}
+                </div>
+                {% else %}
+                    <div class="alert btn-main-masai">
+                        <p>لطفا قسمت جست و جو را خالی نگذارید!!!</p>
+                    </div>
+                </div>
+    {% endif %}
+        </div>
+        </div>
+
+        </div>
+
+    </div>
+    </div>
+                            {% if products.has_other_pages %}
+                            <ul class="pagination center-block">
+
+                            {% if products.has_previous %}
+                                <li><a class="cursor-pointer page-header" href="?page={{ products.previous_page_number }}" data-page="{{ products.previous_page_number }}">قبلی</a></li>
+                            {% endif %}
+
+                            {% for page in paginator.page_range %}
+                                <li class="{% if page == products.number %} active {% endif %}">
+                                    <a class="cursor-pointer page-header" href="?page={{ page }}" data-page="{{ page }}">{{ page }}</a>
+                                </li>
+                            {% endfor %}
+
+                            {% if products.has_next %}
+                                <li><a class="cursor-pointer page-header" href="?page={{ products.next_page_number }}" data-page="{{ products.next_page_number }}">بعدی</a></li>
+                            {% endif %}
+
+
+	                        </ul>
+                            {% endif %}
+    </div>
+</center>
+    <script type="text/javascript">
+        let searchForm = document.getElementById('searchForm')
+        let pageLinks = document.getElementsByClassName('page-header')
+
+        if(searchForm){
+            for(let i=0;pageLinks.length > i;i++){
+                pageLinks[i].addEventListener('click',function (e){
+                    e.preventDefault()
+                    let page = this.dataset.page
+                    searchForm.innerHTML += `<input value=${page} name="page" hidden/>`
+                    searchForm.submit()
+
+                })
+            }
+        }
+
+    </script>
+
+{% endblock %}

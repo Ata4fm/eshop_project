@@ -1,0 +1,353 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% load render_partial %}
+
+{% block title %}
+
+    فروشگاه کتاب
+{% endblock %}
+
+{% block content %}
+
+    <body class="index-page sidebar-collapse">
+    <!--start mobile header -->
+    <nav class="navbar direction-ltr fixed-top header-responsive">
+        <div class="container">
+            <div class="navbar-translate">
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+                <div class="search-nav default">
+                    <form action="#">
+                        <input type="text" placeholder="جستجو ...">
+                        <button type="submit"><img src="/static/assets/img/search.png" alt=""></button>
+                    </form>
+
+                    <ul>
+                        <li><a href="#"><i class="fa fa-user-large colormain" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cart-arrow-down colormain" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end mobile header -->
+    <div class="wrapper default">
+
+        <!--start pc header -->
+
+        <!-- end pc header -->
+
+        <main class="main default space-top-10">
+
+            <div class="container-fluid">
+                <div class="slider_main owl-carousel owl-theme ">
+                    {% for slider in sliders %}
+                        <div class="item {% if forloop.first %} active{% endif %} ">
+                            <a href="{{ slider.url }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg_Masai" width="231" height="75"
+                                     viewBox="0 0 231 75" fill="none"
+                                     style="float: right;margin-bottom: -100px;position: relative;z-index: 9;margin-top: 0px;margin-right: 30px;">
+                                    <path clip-rule="evenodd"
+                                          d="M0 0C31.5006 0.949537 50.52 17.872 56.1955 26.4544L55.986 25.8011L82.4924 58.631C99.3032 79.4521 131.038 79.4521 147.849 58.6309L174.356 25.8011L174.146 26.4544C179.822 17.872 198.844 0.949537 230.349 0H0Z"
+                                          fill="#FCFCFC" fill-rule="" style="fill: #fff;"></path>
+                                </svg>
+                                <img src="{{ slider.image.url }}" class="imgslider" alt="">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            <div class="container space-top-50 ">
+                <div class="row space-bottom-30">
+                    <div class="col-md-6">
+                        <div class="row align-items-center justify-content-center">
+                            <div class=" col-3  contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/1.png" class="minilogo_w">
+                                    <b class="title-3 light-black">مَسای مارکت</b>
+                                </div>
+                            </div>
+                            <div class="col-3  contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/2.png" class="minilogo_w">
+                                    <b class="title-3 light-black">حراج مَسای</b>
+                                </div>
+                            </div>
+
+                            <div class=" col-3  contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/4.png" class="minilogo_w">
+                                    <b class="title-3 light-black">مَسای سرویس</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row align-items-center justify-content-center">
+
+                            <div class="col-3   contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/5.png" class="minilogo_w">
+                                    <b class="title-3 light-black">ماه رمضان</b>
+                                </div>
+                            </div>
+                            <div class="col-3 contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/6.png" class="minilogo_w">
+                                    <b class="title-3 light-black">مَسای پلاس</b>
+                                </div>
+                            </div>
+                            <div class="col-3  contact-miniicon  text-center">
+                                <div class="space-5">
+                                    <img src="/static/assets/img/Masai/minilogo/7.png" class="minilogo_w">
+                                    <b class="title-3 light-black">هدیه خرید</b>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <div class="row banner-ads">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6 col-lg-6">
+                                        <div class="widget-banner card border_all">
+                                            <a target="_blank">
+                                                <img class="img-fluid" src="/static/assets/img/1670.webp" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-lg-6">
+                                        <div class="widget-banner card">
+                                            <a target="_top">
+                                                <img class="img-fluid" src="/static/assets/img/1671.webp" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="widget widget-product card border_all bglight pad_time_prod" id="shegeft_1">
+                                    <header class="card-header">
+                                        <h3 class="card-title">
+                                            <span><img src="/static/assets/img/shegeft_1.png"/></span>
+                                        </h3>
+                                    </header>
+                                    <div class="product-carousel owl-carousel owl-theme">
+                                        {% for group in most_visit_products %}
+                                            {% for product in group %}
+                                                <div class="item">
+
+                                                    <a href="{% url 'product-detail' slug=product.slug %}">
+                                                        {% thumbnail product.image "600x800" quality=50 crop='center' as im %}
+                                                            <img src="{{ im.url }}">
+                                                        {% endthumbnail %}
+                                                    </a>
+                                                    <h2 class="product_title text-center pt-2">
+                                                        <a class="txt-main-masai"
+                                                           href="{% url 'product-detail' slug=product.slug %}">  {{ product.title }} </a>
+
+                                                    </h2>
+                                                    <input type="hidden" min="1" value="1"
+                                                           class="search_box" id="product-count">
+                                                    <button onclick="addProductToOrder({{ product.id }})"
+                                                            class="btn btn-main-masai cart">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        افزودن به سبد خرید
+                                                    </button>
+                                                    <div class="price">
+                                                        <p>{{ product.price | three_digits_currency }}</p>
+
+                                                    </div>
+
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{% url 'product-list' %}" class="view_more">مشاهده بیشتر</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row banner-ads">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="widget-banner card border_all">
+                                            <a target="_blank">
+                                                <img class="img-fluid" src="/static/assets/img/1672.webp" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="widget-banner card">
+                                            <a target="_top">
+                                                <img class="img-fluid" src="/static/assets/img/1673.webp" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="widget widget-product card border_all bglight">
+                                    <header class="card-header">
+                                        <h3 class="card-title">
+                                            <span><img src="/static/assets/img/seller_1.png"/></span>
+                                        </h3>
+                                    </header>
+                                    <div class="product-carousel owl-carousel owl-theme">
+                                        {% for group in most_bought_products %}
+                                            {% for product in group %}
+                                                <div class="item">
+
+                                                    <a href={% url 'product-detail' slug=product.slug %}>
+                                                        {% thumbnail product.image "600x800" quality=50 crop='center' as im %}
+                                                            <img src="{{ im.url }}">
+                                                        {% endthumbnail %}
+                                                    </a>
+                                                    <h2 class="product_title text-center pt-2">
+                                                        <a class="txt-main-masai"
+                                                           href="{% url 'product-detail' slug=product.slug %}">  {{ product.title }} </a>
+
+                                                    </h2>
+
+                                                    <input type="hidden" min="1" value="1"
+                                                           class="search_box" id="product-count">
+                                                    <button onclick="addProductToOrder({{ product.id }})"
+                                                            class="btn btn-main-masai cart">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        افزودن به سبد خرید
+                                                    </button>
+                                                    <div class="price">
+                                                        <p>{{ product.price | three_digits_currency }}</p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{% url 'product-list' %}" class="view_more">مشاهده بیشتر </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="row banner-ads">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="widget widget-banner card border_all">
+                                    <a target="_blank">
+                                        <img class="img-fluid"
+                                             src="/static/assets/img/6f3fc8211bea4093a939d0445e6a53c8.webp" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="widget widget-product card border_all bglight">
+                                        <header class="card-header">
+                                            <h3 class="card-title">
+                                                <span><img src="/static/assets/img/fav.png" class="w-20"/></span>
+                                            </h3>
+                                        </header>
+                                        <div class="product-carousel owl-carousel owl-theme">
+                                            {% if fav_categories %}
+                                                {% for group in fav_categories %}
+                                                    {% for product in group %}
+                                                        <div class="item">
+
+                                                            <a href="{% url 'product-detail' slug=product.slug %}">
+                                                                {% thumbnail product.image "600x800" quality=50 crop='center' as im %}
+                                                                    <img src="{{ im.url }}">
+                                                                {% endthumbnail %}
+                                                            </a>
+                                                            <h2 class="product_title text-center pt-2">
+                                                                <a class="txt-main-masai"
+                                                                   href="{% url 'product-detail' slug=product.slug %}">  {{ product.title }} </a>
+
+                                                            </h2>
+
+                                                            <input type="hidden" min="1" value="1"
+                                                                   class="search_box" id="product-count">
+                                                            <button onclick="addProductToOrder({{ product.id }})"
+                                                                    class="btn btn-main-masai cart">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                                افزودن به سبد خرید
+                                                            </button>
+                                                            <div class="price">
+                                                                <p>{{ product.price | three_digits_currency }}</p>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                                {% else %}
+
+                                        </div>
+                                                <div class="txt-main-masai">
+                                                    <p class="text-center">لطفا از طریق پنل کاربری لیست علایق پروفایل را تکمیل نمایید</p>
+
+                                                </div>
+                                    </div>
+                                            {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="brand-slider card border_all bglight">
+                            <header class="card-header">
+                                <h3 class="card-title"><span>دسته بندی</span></h3>
+                            </header>
+
+                            <div class="owl-carousel">
+                                {% for categories_product in categories_products %}
+                                    <div class="item borderitem p-3">
+                                        <a href="{% url 'product-categories-list' cat=categories_product.url_title %}">{{ categories_product.title }}</a></li>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    </body>
+
+{% endblock %}

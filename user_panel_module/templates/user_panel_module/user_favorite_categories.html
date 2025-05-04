@@ -1,0 +1,35 @@
+{% extends 'shared/_layout.html' %}
+
+{% load render_partial %}
+
+{% block title %}
+    لیست علایق کاربر
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            <div class="profile-page-aside col-md-3">
+                <div class="profile-menu ">
+                    {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+                </div>
+
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-8 pt-4">
+                <form action="{% url 'user-favorite-category' %}" method="post">
+                    {% csrf_token %}
+
+                    {{ form }}
+
+                    <button type="submit" class="btn btn-main-masai">ثبت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

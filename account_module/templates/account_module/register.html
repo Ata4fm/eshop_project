@@ -1,0 +1,55 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+    فرم ثبت نام
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+                <div class="row">
+                    <div class="main-content login_content  col-12 col-md-7 col-lg-5 mx-auto">
+                        <header class="card-header">
+                            <h3 class="card-title"><span>ثبت نام کاربر</span></h3>
+                        </header>
+                        <div class="login_box">
+
+
+
+                                <form method="post" action="{% url 'register-page' %}">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-account-title"><span>*</span> ایمیل کاربری</div>
+                                            {{ register_form.email }}
+                                            {{ register_form.email.errors }}
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12 col-sm-12 p-3">
+                                            <div class="form-account-title"><span>*</span> کلمه عبور </div>
+                                            {{ register_form.password }}
+                                            {{ register_form.password.errors }}
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 p-3">
+                                            <div class="form-account-title"><span>*</span> تایید کلمه عبور </div>
+                                            {{ register_form.confirm_password }}
+                                            {{ register_form.confirm_password.errors }}
+                                        </div>
+
+
+                                        <div class="col-12 text--center">
+                                            <button type="submit" class="btn big_btn btn-main-masai">ثبت نام</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+{% endblock %}

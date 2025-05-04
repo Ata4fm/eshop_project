@@ -1,0 +1,69 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+{% load poll_extras %}
+
+{% block title %}
+    لیست محصولات خریداری شده
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="profile-page-aside col-md-3 pt-5">
+                <div class="profile-menu ">
+                    {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+                </div>
+            </div>
+
+
+
+            <div class="cart-page col-md-9">
+                <main class="cart-page default space-top-30">
+                    <div class="container">
+                        <div class="row">
+                            <div class="cart_content col-xl-12 col-lg-12 col-md-12">
+                                <header class="card-header">
+                                    <h3 class="card-title"><span>محصولات خریداری شده شما</span></h3>
+                                </header>
+                                <div class="table-responsive default">
+                                    <table class="table">
+                                        <thead class="text-center">
+                                        <tr>
+                                            <th scope="col">شناسه</th>
+                                            <th scope="col">کد پیگیری</th>
+                                            <th scope="col">تاریخ خرید</th>
+                                            <th scope="col">جزئیات</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for order in object_list %}
+                                            <tr>
+                                                <td class="text-center">{{ order.id }}</td>
+                                                <td class="text-center">{{ order.code }}</td>
+                                                <td class="text-center">{{ order.payment_date|show_jalali_date }}</td>
+                                                <td class="text-center">
+                                                    <a href="{% url 'my-shopping-detail' order_id=order.id %}"
+                                                       class="btn btn-main-masai">
+                                                        جزییات
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </main>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

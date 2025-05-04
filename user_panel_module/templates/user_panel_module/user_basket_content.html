@@ -1,0 +1,134 @@
+{% load poll_extras %}
+
+{% if order.orderdetail_set.all %}
+    <main class="cart-page default space-top-30">
+        <div class="container">
+            <div class="row">
+                <div class="cart_content col-xl-12 col-lg-12 col-md-12">
+                    <header class="card-header">
+                        <h3 class="card-title"><span>سبد خرید شما</span></h3>
+                    </header>
+                    <div class="table-responsive default">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">محصول</th>
+                                <th scope="col">نام کتاب</th>
+                                <th scope="col">قیمت واحد</th>
+                                <th scope="col">تعداد</th>
+                                <th scope="col">قیمت نهایی</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for detail in order.orderdetail_set.all %}
+                                <tr class="cart_item">
+                                    <td>
+                                        <img src="{{ detail.product.image.url }}" width="65" alt="">
+                                    </td>
+                                    <td>
+                                        <h3 class="cart_title">
+                                            <h6><a class="one-line-text">{{ detail.product.title }}</a></h6>
+                                        </h3>
+                                    </td>
+                                    <td>
+                                        <div class="cart_price">
+                                            <ins><span>{{ detail.product.price | three_digits_currency }}</span></ins>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a class="cart_quantity_up cursor-pointer"
+                                           onclick="changeOrderDetailCount({{ detail.id }}, 'increase')"> + </a>
+                                        <input class="tedad" type="text" name="quantity"
+                                               value="{{ detail.count }}"
+                                               autocomplete="off" size="2" readonly>
+                                        <a class="cart_quantity_down  cursor-pointer"
+                                           onclick="changeOrderDetailCount({{ detail.id }}, 'decrease')"> - </a>
+                                    </td>
+                                    <td>
+                                        <div class="cart_price">
+                                            <ins><span>{% multiply detail.count detail.product.price %}</span></ins>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="cart-page-content col-xl-12 col-lg-12 col-md-12">
+                    <div class="row cart_details">
+
+                        <div class="cart-page-content col-xl-8 col-lg-7 col-md-7 ">
+                            <div class="text_details">
+                                <p>
+                                    ارسال رایگان برای سفارش‌های بالای 1 میلیون و 400 هزار تومان
+                                </p>
+                                <p>
+                                    افزودن کالا به سبد خرید به معنی رزرو آن نیست با توجه به محدودیت موجودی سبد خود را
+                                    ثبت و خرید را تکمیل کنید.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="cart-page-aside col-xl-4 col-lg-5 col-md-5 divider_details">
+                            <table class="table table_details">
+                                <tbody>
+                                <tr>
+                                    <td>قیمت کل سفارش:</td>
+                                    <td><span class="font-weight-bold"
+                                              style="font-size: 16px;">{{ sum | three_digits_currency }}</span></td>
+                                </tr>
+
+                                <tr class="all">
+                                    <td>قیمت قابل پرداخت:</td>
+                                    <td><span class="font-weight-bold"
+                                              style="font-size: 16px;">{{ sum | three_digits_currency }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><a href="{% url 'request-payment' %}"
+                                                       class="btn btn-default check_out btn-main-masai big_btn">پرداخت</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+{% else %}
+    <main class="cart-page default space-top-30">
+        <div class="container">
+            <div class="row">
+                <div class="cart_content col-xl-12 col-lg-12 col-md-12">
+                    <header class="card-header">
+                        <h3 class="card-title"><span>سبد خرید شما</span></h3>
+                    </header>
+                    <div class="table-responsive default">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">محصول</th>
+                                <th scope="col">نام کتاب</th>
+                                <th scope="col">قیمت واحد</th>
+                                <th scope="col">تعداد</th>
+                                <th scope="col">قیمت نهایی</th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <p class="txt-main-masai basket-bg text-center align-content-center bg-dark pt-3 pb-3">
+                            سبد خرید شما خالی می باشد
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endif %}
