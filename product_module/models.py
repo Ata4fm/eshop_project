@@ -65,8 +65,6 @@ class Product(models.Model):
         verbose_name = 'محصول'
         verbose_name_plural = 'محصولات'
 
-
-
 class ProductTag(models.Model):
     caption = models.CharField(max_length=300, db_index=True, verbose_name='عنوان')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_tags')
@@ -77,7 +75,6 @@ class ProductTag(models.Model):
 
     def __str__(self):
         return self.caption
-
 
 class ProductVisit(models.Model):
     product = models.ForeignKey('Product',on_delete=models.CASCADE, verbose_name='محصول')
@@ -90,8 +87,6 @@ class ProductVisit(models.Model):
 
     def __str__(self):
         return f'{self.product.title} / {self.ip}'
-
-
 
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE, verbose_name='محصول')

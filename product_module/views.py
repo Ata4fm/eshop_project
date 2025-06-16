@@ -32,11 +32,6 @@ def search(request):
         'products': products,
         'paginator': paginator
     })
-
-
-
-
-
 class ProductListView(ListView):
     template_name = 'product_module/product_list.html'
     model = Product
@@ -74,8 +69,6 @@ class ProductListView(ListView):
         if category_name is not None:
             query = query.filter(category__url_title__iexact=category_name)
         return query
-
-
 class ProductDetailView(DetailView):
     template_name = 'product_module/product_detail.html'
     model = Product
@@ -101,18 +94,12 @@ class ProductDetailView(DetailView):
             new_visit.save()
 
         return context
-
-
-
-
 def product_categories_component(request: HttpRequest):
     product_categories = ProductCategory.objects.filter(is_active=True, is_delete=False)
     context = {
         'categories': product_categories
     }
     return render(request, 'product_module/components/product_categories.html', context)
-
-
 def books_author_component(request: HttpRequest):
     books_author = ProductAuthor.objects.annotate(products_count=Count('product')).filter(is_active=True)
     context = {

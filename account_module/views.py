@@ -5,7 +5,7 @@ from django.views import View
 from .models import User
 from django.utils.crypto import get_random_string
 from account_module.forms import RegisterForm, LoginForm, ForgotPasswordForm, ResetPasswordForm
-from django.http import Http404, HttpRequest, HttpResponseRedirect
+from django.http import Http404, HttpRequest, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import login,logout
 from utils.email_service import send_email
 from django.utils.decorators import method_decorator
@@ -33,7 +33,16 @@ class RegisterView(View):
             user_password = register_form.cleaned_data.get('password')
             user: bool = User.objects.filter(email__iexact=user_email).exists()
             if user:
-                register_form.add_error('email','ایمیل وارد شده تکراری می باشد')
+                return JsonResponse(
+                    {
+                        'status': 'error',
+                        'title': 'ناموفق',
+                        'text': 'کاربر گرامی ایمیل وارد شده تکراری می باشد',
+                        'icon': 'error',
+                        'confirm_button_text': 'باشه'
+                    }
+                    ,status=400
+                )
             else:
                 new_user = User(
                     email=user_email,
@@ -43,7 +52,32 @@ class RegisterView(View):
                 new_user.set_password(user_password)
                 new_user.save()
                 send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/activate_account.html')
-                return redirect(reverse('login-page'))
+                return JsonResponse(
+                    {
+                        'status': 'success',
+                        'title': 'موفق',
+                        'text': 'کاربر گرامی لینک فعالسازی حساب برای ایمیل شما ارسال شد',
+                        'icon': 'success',
+                        'confirm_button_text': 'باشه',
+                    },
+                    status=200
+                )
+        else:
+            errors = register_form.errors.get_json_data()
+            if 'confirm_password' in errors:
+                error_message = errors['confirm_password'][0]['message']
+            else:
+                error_message = 'اطلاعات را وارد نمایید.'
+            return JsonResponse(
+                {
+                    'status': 'error',
+                    'title': 'خطا',
+                    'text': error_message,
+                    'icon': 'error',
+                    'confirm_button_text': 'باشه'
+                }, status=400
+            )
+
         context = {
             'register_form': register_form
         }
@@ -73,17 +107,66 @@ class LoginView(View):
             user: User = User.objects.filter(email__iexact=user_email).first()
             if user is not None:
                 if not user.is_active:
-                    login_form.add_error('email','حساب کاربری شما فعال نشده است')
+                    return JsonResponse(
+                {
+                    'status': 'error',
+                    'title': 'اعلان',
+                    'text': 'حساب کاربری فعال نشده است برای تایید به ایمیل مراجعه فرمایید',
+                    'icon': 'info',
+                    'confirm_button_text': 'باشه'
+
+                }, status=400
+            )
                 else:
                     is_password_correct = user.check_password(user_pass)
                     if is_password_correct:
                         login(request,user)
-                        return redirect(reverse('user-panel-dashboard'))
+                        return JsonResponse(
+                            {
+                                'status': 'success',
+                                'title': 'موفق',
+                                'text': 'کاربر گرامی احراز هویت با موفقیت انجام شد',
+                                'icon': 'success',
+                            },
+                            status=200
+                        )
                     else:
-                        login_form.add_error('email', 'کلمه عبور اشتباه است')
+                        return JsonResponse(
+                            {
+                                'status': 'error',
+                                'title': 'خطا',
+                                'text': 'کلمه عبور اشتباه است دوباره اقدام نمایید',
+                                'icon': 'warning',
+                                'confirm_button_text': 'باشه'
+                            }, status=400
+                        )
 
             else:
-                login_form.add_error('email','کاربری با مشخصات وارد شده یافت نشد')
+                return JsonResponse(
+                    {
+                        'status': 'error',
+                        'title': 'خطا',
+                        'text': 'چنین کاربری با این مشخصات یافت نشد!',
+                        'icon': 'error',
+                        'confirm_button_text': 'باشه'
+                    }, status=400
+                )
+        else:
+            errors = login_form.errors.get_json_data()
+            if 'password' in errors:
+                error_message = errors['password'][0]['message']
+            else:
+                error_message = 'اطلاعات را وارد نمایید'
+            return JsonResponse(
+                {
+                    'status': 'error',
+                    'title': 'خطا',
+                    'text': error_message,
+                    'icon': 'error',
+                    'confirm_button_text': 'باشه'
+                }, status=400
+            )
+
 
         context = {
             'login_form': login_form
@@ -117,6 +200,11 @@ class ActivateAccountView(View):
 
 
 class ForgetPasswordView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('user-panel-dashboard')
+
+        return super().dispatch(request, *args, **kwargs)
     def get(self,request: HttpRequest):
         forget_pass_form = ForgotPasswordForm()
         context = {
@@ -139,6 +227,11 @@ class ForgetPasswordView(View):
 
 
 class ResetPasswordView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('user-panel-dashboard')
+
+        return super().dispatch(request, *args, **kwargs)
     def get(self, request: HttpRequest, active_code):
         user: User = User.objects.filter(email_active_code__iexact=active_code).first()
         if user is None:

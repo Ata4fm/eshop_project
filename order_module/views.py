@@ -1,4 +1,6 @@
 import datetime
+import requests
+import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse, HttpResponse
@@ -7,8 +9,8 @@ from django.urls import reverse
 from product_module.models import Product
 from .models import Order, OrderDetail
 from django.shortcuts import redirect, render
-import requests
-import json
+
+
 
 MERCHANT = 'cb57b97c-9512-11e9-9732-000c29344814'
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
@@ -21,24 +23,6 @@ mobile = ''  # Optional
 # Important: need to edit for realy server.
 CallbackURL = 'http://127.0.0.1:8000/order/verify-payment/'
 
-@login_required
-def fake_verify_payment(request: HttpRequest):
-    current_order = Order.objects.get(is_paid=False, user_id=request.user.id)
-    total_price = current_order.get_calculate_total_price()
-
-    # شبیه‌سازی موفقیت در پرداخت
-    current_order.is_paid = True
-    current_order.payment_date = datetime.datetime.now()
-    current_order.code = 'TEST123456'
-    current_order.save()
-
-    # به‌روزرسانی جزئیات سفارش
-    order_details = OrderDetail.objects.filter(order_id=current_order.id)
-    for detail in order_details:
-        detail.final_price = detail.product.price * detail.count
-        detail.save()
-
-    return HttpResponse("پرداخت تستی با موفقیت انجام شد.")
 
 def add_product_to_order(request: HttpRequest):
     product_id = int(request.GET.get('product_id'))

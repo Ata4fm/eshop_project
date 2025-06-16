@@ -1,46 +1,49 @@
 {% load thumbnail %}
 {% load poll_extras %}
 <div class="col-xl-4 col-lg-4 col-md-6 col-12 list_search_p ">
-                                                <div class="product-box">
-                                                    <div class="product-seller-details product-seller-details-item-grid">
-                                                        <p style="opacity: 50%">{{ product.author }}</p>
-                                                        <span class="search_prod_btn">
-                                                            <i class="fa fa fa-cart-arrow-down search_icon_cart" aria-hidden="true"
+    <div class="product-box">
+        <div class="product-seller-details product-seller-details-item-grid">
+            <p style="opacity: 50%">{{ product.author }}</p>
+            <span class="search_prod_btn">
+                                                            <i class="fa fa fa-cart-arrow-down search_icon_cart"
+                                                               aria-hidden="true"
                                                                onclick="addProductToOrder({{ product.id }})"></i>
                                                             <input type="hidden" min="1" value="1"
-                                                            class="search_box" id="product-count">
+                                                                   class="search_box" id="product-count">
                                                         </span>
-                                                    </div>
-                                                    <a class="product-box-img">
-                                                        {% if product.image %}
-                                           {% thumbnail product.image "400x600" quality=50 crop='center'  as im %}
-                                               <img class="rounded" src="{{ im.url }}">
-                                            {% endthumbnail %}
-                                            {% else %}
+        </div>
+        <a class="product-box-img">
+            {% if product.image %}
+                {% thumbnail product.image "400x600" quality=50 crop='center' as im %}
+                    <img class="rounded" src="{{ im.url }}">
+                {% endthumbnail %}
+            {% else %}
 
-                                                        {% endif %}
-                                                    </a>
-                                                    <div class="product-box-content">
-                                                        <div class="product-box-content-row">
-                                                            <div class="product_title text-center">
-                                                                <h5 class="pt-4">
-                                                                     <a class="txt-main-masai" href="{% url 'product-detail' slug=product.slug %}"> {{ product.title }}</a>
-                                                                </h5>
-                                                            </div>
-                                                            <div class=" product_price_search">
-                                                            <div class="price">
-                                                                <p style="font-size: medium">{{ product.price | three_digits_currency }}</p>
-                                                            </div>
-
-
-										                            <li><a href="{% url 'product-detail' slug=product.slug %}" class="product_detail"><i class="fa fa-plus-square"></i> مشاهده جزییات </a></li>
+            {% endif %}
+        </a>
+        <div class="product-box-content">
+            <div class="product-box-content-row">
+                <div class="product_title text-center">
+                    <h5 class="pt-4">
+                        <a class="txt-main-masai"
+                           href="{% url 'product-detail' slug=product.slug %}"> {{ product.title }}</a>
+                    </h5>
+                </div>
+                <div class=" product_price_search">
+                    <div class="price">
+                        <p style="font-size: medium">{{ product.price | three_digits_currency }}</p>
+                    </div>
 
 
-                                                        </div>
+                    <li><a href="{% url 'product-detail' slug=product.slug %}" class="product_detail"><i
+                            class="fa fa-plus-square"></i> مشاهده جزییات </a></li>
 
-                                                    </div>
-                                                        </div>
 
-                                                </div>
-                                            </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 

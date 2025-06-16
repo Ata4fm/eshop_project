@@ -21,6 +21,8 @@ class RegisterForm(forms.Form):
         widget=forms.PasswordInput(attrs={'class':'input_second input_all'}),
         validators=[
             validators.MaxLengthValidator(100),
+            validators.MinLengthValidator(8),
+
         ],
         error_messages={
             'required': 'لطفا رمز عبور را وارد نمایید'
@@ -33,9 +35,10 @@ class RegisterForm(forms.Form):
         widget= forms.PasswordInput(attrs={'class':'input_second input_all'}),
         validators=[
             validators.MaxLengthValidator(100),
+            validators.MinLengthValidator(8),
         ],
         error_messages={
-            'required': 'لطفا دوباره رمز عبور را وارد نمایید'
+            'required': 'لطفا فیلد تایید رمز عبور را وارد نمایید'
         }
     )
 
@@ -74,7 +77,8 @@ class LoginForm(forms.Form):
         label='رمز',
         widget=forms.PasswordInput(attrs={'class':'input_second input_all'}),
         validators=[
-            validators.MinLengthValidator(6),
+            validators.MaxLengthValidator(100),
+            validators.MinLengthValidator(8),
         ],
         error_messages={
             'required': 'لطفا رمز را وارد نمایید'

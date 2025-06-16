@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class SiteSetting(models.Model):
 
     site_name = models.CharField(max_length=200, verbose_name='نام سایت')
@@ -57,7 +55,6 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title
-
 
 class SiteBanner(models.Model):
 

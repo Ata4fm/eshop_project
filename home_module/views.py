@@ -50,7 +50,6 @@ class HomeView(TemplateView):
             context['fav_categories'] = fav_categories
         return context
 
-
 class AboutView(TemplateView):
     template_name = 'home_module/about_page.html'
 
@@ -59,11 +58,6 @@ class AboutView(TemplateView):
         site_setting = SiteSetting.objects.filter(is_main_setting=True).first()
         context['site_setting'] = site_setting
         return context
-
-
-
-
-
 
 def site_header_component(request):
     serach_query = ''
@@ -77,7 +71,6 @@ def site_header_component(request):
 
     }
     return render(request, 'shared/site_header.html', context)
-
 
 def site_footer_component(request):
     setting: SiteSetting = SiteSetting.objects.filter(is_main_setting=True).first()

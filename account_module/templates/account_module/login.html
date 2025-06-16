@@ -15,26 +15,23 @@
                     <h3 class="card-title"><span>ورود به حساب کاربری</span></h3>
                 </header>
                 <div class="login_box">
-                    <form method="post" action="{% url 'login-page' %}">
+                    <form id="login-form-sw" method="post" action="{% url 'login-page' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                <div class="form-account-title"><span>*</span>ایمیل کاربری</div>
-                                {{ login_form.email }}
-                                <div class="text-danger">
-                                    {{ login_form.email.errors }}
+                                <div class="form-account-title">ایمیل کاربری
+                                    <span class="text-danger">*</span>
                                 </div>
+                                {{ login_form.email }}
                             </div>
                             <br>
                             <div class="col-md-12 col-sm-12 p-3">
-                                <div class="form-account-title"><span>*</span> کلمه عبور</div>
+                                <div class="form-account-title"> کلمه عبور
+                                <span class="text-danger">*</span></div>
                                 {{ login_form.password }}
-                                <div class="text-danger">
-                                    {{ login_form.password.errors }}
-                                </div>
                             </div>
                             <div class="col-12">
-                                <a class="faramooshi" href="{% url 'forgot-password' %}">رمز عبور را فراموش کرده
+                                <a class="txt-main-masai" href="{% url 'forgot-password' %}">رمز عبور را فراموش کرده
                                     اید؟</a>
                             </div>
                             <div class="col-12 text--center">
@@ -43,7 +40,7 @@
                             <div class="col-12 footer_login_reg text--center">
                                 <p>
                                     <span>کاربر جدید هستید؟</span>
-                                    <a href="{% url 'register-page' %}">ثبت نام</a>
+                                    <a class="txt-main-masai" href="{% url 'register-page' %}">ثبت نام</a>
 
                                 </p>
 

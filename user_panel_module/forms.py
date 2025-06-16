@@ -76,8 +76,6 @@ class EditProfileModelForm(forms.ModelForm):
         }
 
 
-
-
 class ChangePasswordModelForm(forms.Form):
     current_password = forms.CharField(
         label='کلمه عبور فعلی',

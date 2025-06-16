@@ -120,7 +120,8 @@ def user_panel_menu_component(request: HttpRequest):
 
 @login_required
 def user_basket(request: HttpRequest):
-    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,user_id=request.user.id)
+    current_order, created = (Order.objects.prefetch_related('orderdetail_set').get_or_create
+                              (is_paid=False,user_id=request.user.id))
     total_amount = current_order.get_calculate_total_price()
 
     context = {
